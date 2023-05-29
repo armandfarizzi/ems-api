@@ -4,6 +4,7 @@ class CreateReviews < ActiveRecord::Migration[7.0]
       t.string :employee_id
       t.integer :rating
       t.text :comment
+      t.boolean :approved
 
       t.timestamps
       t.index ["employee_id", "created_at"], name: "review_employee_id"

@@ -27,13 +27,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_034138) do
     t.string "role"
     t.string "department_id"
     t.index ["department_id"], name: "FKbejtwvg9bxus2mffsm3swj3u9"
-    t.index ["email", "department_id"], name: "employee_email_IDX", unique: true
   end
 
   create_table "reviews", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "employee_id"
     t.integer "rating"
     t.text "comment"
+    t.boolean "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id", "created_at"], name: "review_employee_id"

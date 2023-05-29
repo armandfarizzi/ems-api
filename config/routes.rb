@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :reviews
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :api do
+    namespace :v1 do 
+      resources :reviews, only: [:index, :show, :create] do 
+        collection do 
+          post ':id/approve', to: 'reviews#approve'
+        end
+      end
+    end
+  end
 end
