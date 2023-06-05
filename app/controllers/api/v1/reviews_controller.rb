@@ -5,7 +5,16 @@ class Api::V1::ReviewsController < ApplicationController
 
   # GET /reviews
   def index
-    @reviews = Review.approved(@is_admin).all
+    logger.debug "params: #{params}"
+    HardJob.perform_async()
+    employee_id = params["employee_id"] || ""
+    with_employee_id = employee_id != ""
+
+    if with_employee_id
+      @reviews = Review.approved(@is_admin).where(employee_id: employee_id).all
+    else
+      @reviews = Review.approved(@is_admin).all
+    end
   end
 
   def approve

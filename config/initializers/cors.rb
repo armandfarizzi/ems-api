@@ -14,3 +14,4 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
         methods: [:get, :post, :put, :patch, :delete, :options, :head]
     end
 end
+# curl --location 'http://localhost:3050/api/v1/reviews?employee_id=abcd_1234'
